@@ -20,7 +20,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // This application will not work until you enter your Facebook application's API key here:
 
-static NSString* kApiKey = @"";
+static NSString* kApiKey = nil; // @"<YOUR API KEY>"
 
 // Enter either your API secret or a callback URL (as described in documentation):
 static NSString* kApiSecret = nil; // @"<YOUR SECRET KEY>";
@@ -36,6 +36,8 @@ static NSString* kGetSessionProxy = nil; // @"<YOUR SESSION CALLBACK)>";
 // NSObject
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
+  NSAssert(kApiKey != nil, @"You must specify your Facebook API key to run this app.");
+
   if (self = [super initWithNibName:@"SessionViewController" bundle:nibBundleOrNil]) {
     if (kGetSessionProxy) {
       _session = [[FBSession sessionForApplication:kApiKey getSessionProxy:kGetSessionProxy
